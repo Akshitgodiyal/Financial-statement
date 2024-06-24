@@ -121,7 +121,7 @@ const FinancialTable = () => {
   // Custom header component to make all headers bold
   const components = {
     header: {
-      cell: ({ children }) => <th style={{ fontWeight: "700", background: "#ddebfe" }}>{children}</th>,
+      cell: ({ children }) => <th style={{ fontWeight: "700", background: "#ddebfe",fontSize:"16px" }}>{children}</th>,
     },
   };
 
@@ -192,7 +192,7 @@ const FinancialTable = () => {
             onClick={handleAddRow}
             className="mt-2 border-blue-500 text-blue-700 font-bold py-2 px-4 rounded"
           >
-            Add Row
+            Add Category
           </Button>
         </div>
       </div>

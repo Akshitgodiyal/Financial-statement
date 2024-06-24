@@ -28,7 +28,7 @@ code {
 /* Optional: Add border styles to the entire table */
 .ant-table {
   border-radius: 0px 0px 0 0 !important;
-
+overflow-x: auto;
 
 }
 

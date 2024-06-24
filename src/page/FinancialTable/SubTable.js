@@ -8,7 +8,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(2);
+    const [pageSize, setPageSize] = useState(5);
     const [isExpandModalVisible, setIsExpandModalVisible] = useState(false);
     const [modalCurrentPage, setModalCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState(null);
@@ -216,12 +216,12 @@ const SubTable = ({ data, setData, parentCategory }) => {
         ...paginatedData,
         {
             key: 'totals',
-            category: <span className="font-semibold">Total</span>,
-            '31-12-2021': <span className="font-semibold">{totals['31-12-2021']}</span>,
-            '31-12-2022': <span className="font-semibold">{totals['31-12-2022']}</span>,
-            '31-12-2024': totals['31-12-2024'],
-            variance: <span className="font-semibold">{calculateTotalVariance(totals)}</span>,
-            variancePercentage: <span className="font-semibold">{calculateTotalVariancePercentage(totals)}</span>,
+            category: <span className=" text-base font-bold text-gray-500">Total {parentCategory}</span>,
+            '31-12-2021': <span className="text-base font-bold text-gray-500">{totals['31-12-2021']}</span>,
+            '31-12-2022': <span className="text-base font-bold text-gray-500">{totals['31-12-2022']}</span>,
+            '31-12-2024':<span className="text-base font-bold text-gray-500">{totals['31-12-2024']}</span>,
+            variance: <span className="text-base font-bold text-gray-500">{calculateTotalVariance(totals)}</span>,
+            variancePercentage: <span className="text-base font-bold text-gray-500">{calculateTotalVariancePercentage(totals)}</span>,
         },
     ];
 
@@ -229,12 +229,12 @@ const SubTable = ({ data, setData, parentCategory }) => {
         ...modalPaginatedData,
         {
             key: 'totals',
-            category: <span className="font-semibold">Total</span>,
-            '31-12-2021': <span className="font-semibold">{totals['31-12-2021']}</span>,
-            '31-12-2022': <span className="font-semibold">{totals['31-12-2022']}</span>,
-            '31-12-2024': totals['31-12-2024'],
-            variance: <span className="font-semibold">{calculateTotalVariance(totals)}</span>,
-            variancePercentage: <span className="font-semibold">{calculateTotalVariancePercentage(totals)}</span>,
+            category: <span className=" text-base font-bold text-gray-500">Total {parentCategory}</span>,
+            '31-12-2021': <span className="text-base font-bold text-gray-500">{totals['31-12-2021']}</span>,
+            '31-12-2022': <span className="text-base font-bold text-gray-500">{totals['31-12-2022']}</span>,
+            '31-12-2024':<span className="text-base font-bold text-gray-500">{totals['31-12-2024']}</span>,
+            variance: <span className="text-base font-bold text-gray-500">{calculateTotalVariance(totals)}</span>,
+            variancePercentage: <span className="text-base font-bold text-gray-500">{calculateTotalVariancePercentage(totals)}</span>,
         },
     ];
 
@@ -250,7 +250,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
         <div className="mb-4">
             <div className="flex justify-between p-4 w-full mt-2 bg-sky-50">
                 <div className='flex'>
-                <h3 className="font-semibold">{parentCategory}</h3>
+                <h3 className="text-lg font-bold">{parentCategory}</h3>
    <a className=" mx-3 p-1 cursor-pointer"
                         style={{ background: (sortOrder == 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
                         onClick={handleSort} >
@@ -286,8 +286,8 @@ const SubTable = ({ data, setData, parentCategory }) => {
                 className="bg-white"
             />
             <div className="flex justify-between items-center mt-2">
-                <Select defaultValue={2} onChange={handlePageSizeChange} className="w-32">
-                    <Option value={2}>2</Option>
+                <Select defaultValue={5} onChange={handlePageSizeChange} className="w-32">
+                    <Option value={5}>5</Option>
                     <Option value={10}>10</Option>
                     <Option value={20}>20</Option>
                     <Option value={30}>30</Option>
