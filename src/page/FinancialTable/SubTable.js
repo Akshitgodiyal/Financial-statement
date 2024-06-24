@@ -84,7 +84,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
         } else {
             return data;
         }
-    }, [ sortOrder]);
+    }, [data, sortOrder]);
 
     const columns = [
         {
@@ -173,18 +173,14 @@ const SubTable = ({ data, setData, parentCategory }) => {
                     {
                         key: Date.now().toString(),
                         category: values.category,
-                        '31-12-2021': values['31-12-2021'],
-                        '31-12-2022': values['31-12-2022'],
-                        '31-12-2024': values['31-12-2024'],
+                        '31-12-2021': parseFloat(values['31-12-2021']),
+                        '31-12-2022': parseFloat(values['31-12-2022']),
+                        '31-12-2024': parseFloat(values['31-12-2024']),
                     },
                 ];
                 setData(newData);
-
-                const newTotalPages = Math.ceil(newData.length / pageSize);
-
-                setCurrentPage(newTotalPages);
-
                 setIsModalVisible(false);
+                setCurrentPage(Math.ceil(newData.length / pageSize));
             })
             .catch((errorInfo) => {
                 console.log('Validate Failed:', errorInfo);
@@ -214,6 +210,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
 
     const dataSource = [
         ...paginatedData,
+        
         {
             key: 'totals',
             category: <span className=" text-base font-bold text-gray-500">Total {parentCategory}</span>,
@@ -251,23 +248,20 @@ const SubTable = ({ data, setData, parentCategory }) => {
             <div className="flex justify-between p-4 w-full mt-2 bg-sky-50">
                 <div className='flex'>
                 <h3 className="text-lg font-bold">{parentCategory}</h3>
-   <a className=" mx-3 p-1 cursor-pointer"
-                        style={{ background: (sortOrder == 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
+                    <a className=" mx-3 p-1 cursor-pointer"
+                        style={{ background: (sortOrder === 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
                         onClick={handleSort} >
                         {sortOrder === 'profit' ? (
                             <IconSortAscending color="white" width={18}  />
                         ) : sortOrder === 'loss' ? (
                             <IconSortDescending width={18} color="white" />
-                        ) : <>
-
+                        ) : (
                             <IconArrowsSort width={18} color="black" />
-                        </>
-                        }
+                        )}
                     </a>
                 </div>
 
                 <div className="flex justify-center items-center ">
-                 
                     <a onClick={handleAddRow} className="mt-2 border cursor-pointer ml-auto border-blue-500 text-blue-700 font-bold rounded">
                         <IconPlus />
                     </a>
@@ -327,22 +321,19 @@ const SubTable = ({ data, setData, parentCategory }) => {
 
                     <div className="flex justify-center items-center ">
                         <Button className=" mx-3 mt-2 pt-2 cursor-pointer"
-                            style={{ background: (sortOrder == 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
+                            style={{ background: (sortOrder === 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
                             onClick={handleSort} >
                             {sortOrder === 'profit' ? (
                                 <IconSortAscending color="white" />
                             ) : sortOrder === 'loss' ? (
                                 <IconSortDescending color="white" />
-                            ) : <>
-
+                            ) : (
                                 <IconArrowsSort color="black" />
-                            </>
-                            }
+                            )}
                         </Button>
                         <a onClick={handleAddRow} className="mt-2 border cursor-pointer ml-auto border-blue-500 text-blue-700 font-bold rounded">
                             <IconPlus />
                         </a>
-                      
                     </div>
                 </div>
                 <Table
@@ -351,12 +342,8 @@ const SubTable = ({ data, setData, parentCategory }) => {
                     columns={columns}
                     showHeader={true}
                     rowClassName={(record) => (record.key === 'totals' ? 'font-bold totals-row odd:bg-white even:bg-gray-100' : 'even:bg-gray-100 odd:bg-white')}
-                  
                 />
                 <Pagination current={modalCurrentPage} pageSize={30} total={data.length} onChange={handleModalPageChange} className="mt-4" />
-                <div className="flex">
-                    
-                </div>
             </Modal>
         </div>
     );
