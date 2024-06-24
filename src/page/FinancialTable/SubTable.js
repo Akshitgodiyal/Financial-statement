@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Table, Input, Button, Modal, Form, Pagination, Select } from 'antd';
-import { IconLayoutNavbarExpand, IconMaximize, IconPlus, IconSortAscending, IconSortDescending, IconFilter } from '@tabler/icons-react';
+import { IconLayoutNavbarExpand, IconMaximize, IconPlus, IconSortAscending, IconSortDescending, IconFilter, IconArrowsSort } from '@tabler/icons-react';
 
 const { Option } = Select;
 
@@ -249,22 +249,25 @@ const SubTable = ({ data, setData, parentCategory }) => {
     return (
         <div className="mb-4">
             <div className="flex justify-between p-4 w-full mt-2 bg-sky-50">
+                <div className='flex'>
                 <h3 className="font-semibold">{parentCategory}</h3>
-
-                <div className="flex justify-center items-center ">
-                    <Button className=" mx-3 mt-2 pt-2 cursor-pointer"
+   <a className=" mx-3 p-1 cursor-pointer"
                         style={{ background: (sortOrder == 'profit') ? "green" : sortOrder === 'loss' ? "red" : "white" }}
                         onClick={handleSort} >
                         {sortOrder === 'profit' ? (
-                            <IconSortAscending color="white" />
+                            <IconSortAscending color="white" width={18}  />
                         ) : sortOrder === 'loss' ? (
-                            <IconSortDescending color="white" />
+                            <IconSortDescending width={18} color="white" />
                         ) : <>
 
-                            <IconFilter color="black" />
+                            <IconArrowsSort width={18} color="black" />
                         </>
                         }
-                    </Button>
+                    </a>
+                </div>
+
+                <div className="flex justify-center items-center ">
+                 
                     <a onClick={handleAddRow} className="mt-2 border cursor-pointer ml-auto border-blue-500 text-blue-700 font-bold rounded">
                         <IconPlus />
                     </a>
@@ -332,7 +335,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
                                 <IconSortDescending color="white" />
                             ) : <>
 
-                                <IconFilter color="black" />
+                                <IconArrowsSort color="black" />
                             </>
                             }
                         </Button>
