@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+<!-- asumption and Key Points for Project -->
+Static Information Rows
+
+The first four rows of the table are static.
+These rows contain standard information that remains unchanged.
+Interactive Buttons
+
+Sort Button
+Enables sorting functionality for the table data.
+Add Subrow Button
+Allows users to add sub-rows to an existing row in the table.
+Expand Table Button
+Expands the table to show additional details or hidden rows.
+Pagination and Dropdown
+
+Pagination
+Allows navigation through the table data across multiple pages.
+Dropdown
+Provides options to set the number of elements displayed per page.
+Add Main Row Button
+
+A main button is provided to add new main rows to the table.
+
+
+
+
+
+
