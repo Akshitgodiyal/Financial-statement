@@ -84,7 +84,7 @@ const SubTable = ({ data, setData, parentCategory }) => {
         } else {
             return data;
         }
-    }, [data, sortOrder]);
+    }, [ sortOrder]);
 
     const columns = [
         {
